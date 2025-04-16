@@ -1,0 +1,182 @@
+<Page
+    x:Class="ParqueaderoUI.Viewss.IngresoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="using:ParqueaderoUI.ViewModels" 
+    xmlns:converters="using:ParqueaderoUI.Converters"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="CardStyle" TargetType="Grid">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundBaseLowBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+            <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <viewModels:IngresoViewModel/>
+    </Page.DataContext>
+
+    <Grid Padding="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Width="300">
+            <Grid Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <TextBlock Text="🚗 Ingreso al Parqueadero" FontSize="20" FontWeight="Bold" TextAlignment="Center" Margin="0,0,0,20"/>
+                    <TextBlock Text="Placa del Vehículo:"/>
+                    <TextBox Text="{Binding Placa, Mode=TwoWay}"/>
+                    <Button Content="🔍 Verificar Placa" Command="{Binding VerificarPlacaCommand}" Background="#6200EE" Foreground="White"/>
+                    <TextBlock Text="{Binding Mensaje}" Foreground="#28a745" TextWrapping="Wrap" TextAlignment="Center" Margin="0,10,0,0"/>
+
+                    <TextBlock Text="Ingrese su número de documento para verificar identidad"/>
+                    <TextBlock Text="Cédula:"/>
+                    <TextBox Text="{Binding Cedula, Mode=TwoWay}"/>
+                    <Button Content="✅ Verificar Identidad" Command="{Binding VerificarIdentidadCommand}" Background="#28a745" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Grid Style="{StaticResource CardStyle}" Visibility="{Binding MostrarFormularioCliente, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel>
+                                <TextBlock Text="👤 Registro de Cliente" FontSize="18" FontWeight="Bold" TextAlignment="Center" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="Cédula:"/>
+                        <TextBox Text="{Binding Cedula, Mode=TwoWay}"/>
+
+                        <TextBlock Text="Nombre:"/>
+                        <TextBox Text="{Binding Nombre, Mode=TwoWay}"/>
+
+                        <TextBlock Text="Teléfono:"/>
+                        <TextBox Text="{Binding Telefono, Mode=TwoWay}"/>
+
+                        <TextBlock Text="Correo:"/>
+                        <TextBox Text="{Binding Correo, Mode=TwoWay}"/>
+
+                        <Button Content="✅ Registrar Cliente" Command="{Binding RegistrarClienteCommand}" Background="#28a745" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <Grid Style="{StaticResource CardStyle}" Visibility="{Binding MostrarFormularioVehiculo, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel>
+                                <TextBlock Text="🚘 Registro de Vehículo" FontSize="18" FontWeight="Bold" TextAlignment="Center" Margin="10,20,0,10"/>
+
+                            <TextBlock Text="Tipo de Vehículo:"/>
+                            <ComboBox ItemsSource="{Binding TiposDeVehiculo}" 
+                                      SelectedItem="{Binding TipoVehiculo, Mode=TwoWay}" 
+                                      PlaceholderText="Seleccione un tipo"/>        
+
+                            <TextBlock Text="Marca:"/>
+                            <TextBox Text="{Binding Marca, Mode=TwoWay}" PlaceholderText="Ingrese la marca"/>
+
+                            <TextBlock Text="Color:"/>
+                            <TextBox Text="{Binding Color, Mode=TwoWay}" PlaceholderText="Ingrese el color"/>
+
+
+                            <Button Content="✅ Registrar Vehículo" Command="{Binding RegistrarVehiculoCommand}" Background="#007bff" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="2" Style="{StaticResource CardStyle}" Visibility="{Binding MostrarFormularioVerificacion, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel>
+                            <TextBlock Text="🚘 Registro Reserva" FontSize="18" FontWeight="Bold" TextAlignment="Center" Margin="10,20,0,10"/>
+
+                            <TextBlock Text="Tipo de Reserva:" FontWeight="Bold" Margin="0,10,0,5"/>
+
+                        <ComboBox ItemsSource="{Binding TiposDeReserva}" 
+                              SelectedItem="{Binding TipoReservaSeleccionado, Mode=TwoWay}" 
+                              Margin="0,0,0,10"
+                              PlaceholderText="Seleccione un tipo de reserva"/>
+
+                        <Button Content="✅ Crear Reserva" 
+                                Command="{Binding CrearReservaCommand}" 
+                                Background="#28a745" 
+                                Foreground="White" 
+                                Margin="0,10,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    <!--<TextBlock Text="{Binding Mensaje}" Margin="0,20,0,0" TextWrapping="Wrap" Foreground="Green"/> -->
+                    </StackPanel>
+                </ScrollViewer>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <TextBlock Text="📍 Mapa de Espacios Disponibles" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <TextBlock Text="Piso:" Margin="0,0,10,0" FontWeight="Bold"/>
+                        <ComboBox x:Name="PisoComboBox" Width="80" SelectedIndex="0">
+                            <ComboBoxItem Content="1" />
+                            <ComboBoxItem Content="2" />
+                            <ComboBoxItem Content="3" />
+                            <ComboBoxItem Content="4" />
+                            <ComboBoxItem Content="5" />
+                        </ComboBox>
+
+                        <TextBlock Text="Zona:" Margin="20,0,10,0" FontWeight="Bold"/>
+                        <ComboBox x:Name="ZonaComboBox" Width="80" SelectedIndex="0">
+                            <ComboBoxItem Content="A" />
+                            <ComboBoxItem Content="B" />
+                        </ComboBox>
+
+                        <Button Content="🔄 Cargar Espacios" Click="CargarEspacios_Click" Margin="20,0,0,0"/>
+                    </StackPanel>
+
+
+                    <TextBlock Text="{Binding MensajeEspacios}" Foreground="Red" HorizontalAlignment="Center" Margin="10"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <ItemsControl ItemsSource="{Binding EspaciosColumna1}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="1" BorderBrush="Gray" Background="{Binding EstadoColor}" Margin="5" Padding="10">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding Nomenclatura}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Estado}" FontSize="12" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <ItemsControl ItemsSource="{Binding EspaciosColumna2}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="1" BorderBrush="Gray" Background="{Binding EstadoColor}" Margin="5" Padding="10">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding Nomenclatura}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Estado}" FontSize="12" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

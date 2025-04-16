@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ParqueaderoUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ParqueaderoUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

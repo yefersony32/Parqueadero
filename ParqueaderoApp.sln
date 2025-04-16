@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParqueaderoAPI", "ParqueaderoAPI\ParqueaderoAPI.csproj", "{2D0F9C39-2A81-4112-A4E2-4FA2919F5B73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParqueaderoUI", "ParqueaderoUI\ParqueaderoUI.csproj", "{CBACA1EF-146F-4C0B-A8E3-8A2FD5FF47F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParqueaderoDB", "ParqueaderoDB\ParqueaderoDB.csproj", "{195F553B-D7D9-4315-BF19-692D1095F1AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D0F9C39-2A81-4112-A4E2-4FA2919F5B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D0F9C39-2A81-4112-A4E2-4FA2919F5B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D0F9C39-2A81-4112-A4E2-4FA2919F5B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D0F9C39-2A81-4112-A4E2-4FA2919F5B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBACA1EF-146F-4C0B-A8E3-8A2FD5FF47F8}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{CBACA1EF-146F-4C0B-A8E3-8A2FD5FF47F8}.Debug|Any CPU.Build.0 = Debug|x64
+		{CBACA1EF-146F-4C0B-A8E3-8A2FD5FF47F8}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{CBACA1EF-146F-4C0B-A8E3-8A2FD5FF47F8}.Release|Any CPU.ActiveCfg = Release|x64
+		{CBACA1EF-146F-4C0B-A8E3-8A2FD5FF47F8}.Release|Any CPU.Build.0 = Release|x64
+		{CBACA1EF-146F-4C0B-A8E3-8A2FD5FF47F8}.Release|Any CPU.Deploy.0 = Release|x64
+		{195F553B-D7D9-4315-BF19-692D1095F1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{195F553B-D7D9-4315-BF19-692D1095F1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{195F553B-D7D9-4315-BF19-692D1095F1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{195F553B-D7D9-4315-BF19-692D1095F1AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF0857DA-F72B-4A8B-91CC-024924FB61B1}
+	EndGlobalSection
+EndGlobal

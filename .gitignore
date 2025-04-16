@@ -1,0 +1,13 @@
+# Ignorar carpetas comunes de compilación
+bin/
+obj/
+
+# Archivos de usuario y configuraciones locales
+*.user
+*.suo
+
+# Archivos de log
+*.log
+
+# Carpeta de configuración de Visual Studio
+.vs/

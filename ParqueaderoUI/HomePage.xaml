@@ -1,0 +1,56 @@
+<Page
+    x:Class="ParqueaderoUI.Viewss.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#455A64">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Padding="30">
+                <TextBlock Text="🚗 MÓDULO OPERATIVO" FontSize="26" FontWeight="Bold" Foreground="White" Margin="0,0,0,30"/>
+
+                <Button Content="Entrar" Click="AbrirMain_Click"
+                        Background="#1E88E5" Foreground="White"
+                        FontSize="18" Padding="10"
+                        Width="200" Height="50"
+                        BorderThickness="0" CornerRadius="8"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Background="#37474F">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Padding="30">
+                <TextBlock Text="⚙️ MÓDULO ADMINISTRATIVO" FontSize="26" FontWeight="Bold" Foreground="White" Margin="0,0,0,30"/>
+
+                <StackPanel Background="#B0BEC5" Padding="20" CornerRadius="10" Width="320" Spacing="10" BorderBrush="Gray" BorderThickness="1">
+
+                    <TextBox x:Name="TxtUsuario" PlaceholderText="Usuario"
+                             Width="280" FontSize="16"
+                             Padding="10" BorderBrush="Gray"
+                             Background="Gray" CornerRadius="5"/>
+
+                    <PasswordBox x:Name="TxtContraseña" PlaceholderText="Contraseña"
+                                 Width="280" FontSize="16"
+                                 Padding="10" BorderBrush="Gray"
+                                 Background="Gray" CornerRadius="5"/>
+
+                    <TextBlock x:Name="TxtError" Foreground="Red" Visibility="Collapsed"
+                               Text="⚠ Usuario o contraseña incorrectos" FontSize="14"
+                               TextAlignment="Center" Margin="0,5"/>
+
+                    <Button Content="Entrar" Click="ValidarAdmin_Click"
+                            Background="#FF7043" Foreground="White"
+                            FontSize="18" Padding="10"
+                            Width="200" Height="50"
+                            BorderThickness="0" CornerRadius="8"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
+
+

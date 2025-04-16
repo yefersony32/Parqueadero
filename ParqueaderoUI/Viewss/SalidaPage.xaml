@@ -1,0 +1,83 @@
+<Page
+    x:Class="ParqueaderoUI.Viewss.SalidaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="using:ParqueaderoUI.ViewModels" xmlns:converters="using:ParqueaderoUI.Converters"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:DecimalConverter x:Key="DecimalConverter"/>
+
+    </Page.Resources>
+
+    <Page.DataContext>
+        <viewModels:SalidaViewModel/>
+    </Page.DataContext>
+    <Grid Padding="20">
+        <StackPanel Spacing="15">
+            <TextBlock Text="🚗 Salida del Parqueadero" FontSize="24" FontWeight="Bold" TextAlignment="Center"/>
+
+            <!-- Entrada de Placa o Documento -->
+            <TextBlock Text="Ingrese Placa o Documento:"/>
+            <TextBox Text="{Binding PlacaODocumento, Mode=TwoWay}" PlaceholderText="Placa o Documento"/>
+
+            <Button Content="🔍 Buscar Vehículo" Command="{Binding BuscarVehiculoCommand}" Background="#6200EE" Foreground="White"/>
+
+            <TextBlock Text="{Binding Mensaje}" Foreground="Red" TextWrapping="Wrap"/>
+
+            <!-- Mostrar Monto -->
+            <TextBlock Text="💲 Monto a Pagar:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding MontoTotal}" FontSize="18" FontWeight="Bold" Foreground="Green"/>
+
+            <!-- Interfaz de Pago Simulada -->
+            <TextBlock Text="💳 Seleccione Método de Pago:" FontWeight="Bold"/>
+
+            <!-- Corregido ComboBox -->
+            <ComboBox SelectedValue="{Binding MetodoPagoSeleccionado, Mode=TwoWay}" SelectedValuePath="Content" PlaceholderText="Seleccione un método">
+                <ComboBoxItem Content="PSE"/>
+                <ComboBoxItem Content="Tarjeta de Crédito"/>
+                <ComboBoxItem Content="Efectivo"/>
+            </ComboBox>
+
+            <!-- Campos Dinámicos para el Método de Pago -->
+            <StackPanel>
+
+                <!-- PSE -->
+                <StackPanel Visibility="{Binding EsPagoPSE, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="🏦 Entidad Financiera:"/>
+                    <TextBox Text="{Binding EntidadFinanciera, Mode=TwoWay}"/>
+                    <TextBlock Text="👤 Titular de la Cuenta:"/>
+                    <TextBox Text="{Binding TitularCuenta, Mode=TwoWay}"/>
+                    <TextBlock Text="🔢 Número de Cuenta:"/>
+                    <TextBox Text="{Binding NumeroCuenta, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <!-- Tarjeta de Crédito -->
+                <StackPanel Visibility="{Binding EsPagoTarjeta, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="👤 Titular de la Tarjeta:"/>
+                    <TextBox Text="{Binding TitularTarjeta, Mode=TwoWay}"/>
+                    <TextBlock Text="💳 Número de Tarjeta:"/>
+                    <TextBox Text="{Binding NumeroTarjeta, Mode=TwoWay}"/>
+                    <TextBlock Text="📅 Fecha de Vencimiento:"/>
+                    <TextBox Text="{Binding FechaVencimiento, Mode=TwoWay}" PlaceholderText="MM/AA"/>
+                    <TextBlock Text="🔒 Código CVV:"/>
+                    <TextBox Text="{Binding CodigoCVV, Mode=TwoWay}" PlaceholderText="123"/>
+                </StackPanel>
+
+                <!-- Efectivo -->
+                <StackPanel Visibility="{Binding EsPagoEfectivo, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="💵 Ingrese Monto en Efectivo:"/>
+                    <TextBox Text="{Binding MontoEfectivoTexto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+         PlaceholderText="Monto entregado" 
+         InputScope="Number"/>
+
+                    <TextBlock Text="{Binding MensajeCambio}" Foreground="Green"/>
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- Botón de Pago -->
+            <Button Content="💳 Pagar" Command="{Binding RealizarPagoCommand}" Background="#28a745" Foreground="White"/>
+        </StackPanel>
+    </Grid>
+</Page>
